@@ -16,5 +16,5 @@ CLAIM_TOKEN_CHILD2_SPACE=<TOKEN_VALUE>
 - start docker compose
 
 ```shell
-> docker-compose up
+> docker compose up
 ```
