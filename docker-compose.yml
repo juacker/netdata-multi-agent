@@ -1,8 +1,9 @@
 version: '3.3'
 services:
-  agent_parent:
+  parent:
     image: netdata/netdata:latest
     container_name: parent
+    hostname: parent
     ports:
       - 20000:19999
     volumes:
@@ -10,9 +11,10 @@ services:
     environment:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_PARENT_SPACE}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
-  agent_child1:
+  child1:
     image: netdata/netdata:latest
     container_name: child1
+    hostname: child1
     ports:
     - 20001:19999
     volumes:
@@ -20,9 +22,10 @@ services:
     environment:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD_SPACE}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
-  agent_child2:
+  child2:
     image: netdata/netdata:latest
     container_name: child2
+    hostname: child2
     ports:
     - 20002:19999
     volumes:
