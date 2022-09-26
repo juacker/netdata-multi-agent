@@ -1,6 +1,6 @@
 # Multi-Agent configuration for Netdata
 
-Multi agent netdata configuration. This setup places children in one space and parent in another space.
+Multi agent netdata configuration. This setup can place children and parent in different spaces, as needed.
 As children are streaming to parent, the three of them will be available at the parent's space.
 
 ## Setup
