@@ -5,11 +5,12 @@ As children are streaming to parent, the three of them will be available at the 
 
 ## Setup
 
-- Create a `.env` file with the required claim tokens:
+- Create a `.env` file with the required claim tokens (if you want to claim all agents to the same space, put the same token value):
 
 ```txt
 CLAIM_TOKEN_PARENT_SPACE=<TOKEN_VALUE>
-CLAIM_TOKEN_CHILD_SPACE=<TOKEN_VALUE>
+CLAIM_TOKEN_CHILD1_SPACE=<TOKEN_VALUE>
+CLAIM_TOKEN_CHILD2_SPACE=<TOKEN_VALUE>
 ```
 
 - start docker compose

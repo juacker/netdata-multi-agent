@@ -20,7 +20,7 @@ services:
     volumes:
       - ./child1_stream.conf:/etc/netdata/stream.conf:ro
     environment:
-      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD_SPACE}
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD1_SPACE}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
   child2:
     image: netdata/netdata:latest
@@ -31,5 +31,5 @@ services:
     volumes:
       - ./child2_stream.conf:/etc/netdata/stream.conf:ro
     environment:
-      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD_SPACE}
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD2_SPACE}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
