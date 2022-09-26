@@ -18,7 +18,7 @@ services:
     ports:
     - 20001:19999
     volumes:
-      - ./child_stream.conf:/etc/netdata/stream.conf:ro
+      - ./child1_stream.conf:/etc/netdata/stream.conf:ro
     environment:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD_SPACE}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
@@ -29,7 +29,7 @@ services:
     ports:
     - 20002:19999
     volumes:
-      - ./child_stream.conf:/etc/netdata/stream.conf:ro
+      - ./child2_stream.conf:/etc/netdata/stream.conf:ro
     environment:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD_SPACE}
       - NETDATA_CLAIM_URL=https://app.netdata.cloud
