@@ -7,10 +7,15 @@ services:
     ports:
       - 20000:19999
     volumes:
+      - /home/juacker/code/netdata/cloud-playground/docker/certs/haproxy.pem:/etc/ssl/certs/haproxy.pem:ro
       - ./parent_stream.conf:/etc/netdata/stream.conf:ro
+      - ./curlrc:/root/.curlrc
+      - ./curlrc:/home/netdata/.curlrc
+      - /etc/hosts:/etc/hosts
     environment:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_PARENT_SPACE}
-      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+      - NETDATA_CLAIM_URL=https://testing.netdata.cloud
+    entrypoint: /bin/bash -c "update-ca-certificates && /usr/sbin/run.sh"
   child1:
     image: netdata/netdata:latest
     container_name: child1
@@ -18,10 +23,15 @@ services:
     ports:
     - 20001:19999
     volumes:
+      - /home/juacker/code/netdata/cloud-playground/docker/certs/haproxy.pem:/etc/ssl/certs/haproxy.pem:ro
       - ./child1_stream.conf:/etc/netdata/stream.conf:ro
+      - ./curlrc:/root/.curlrc
+      - ./curlrc:/home/netdata/.curlrc
+      - /etc/hosts:/etc/hosts
     environment:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD1_SPACE}
-      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+      - NETDATA_CLAIM_URL=https://testing.netdata.cloud
+    entrypoint: /bin/bash -c "update-ca-certificates && /usr/sbin/run.sh"
   child2:
     image: netdata/netdata:latest
     container_name: child2
@@ -29,7 +39,12 @@ services:
     ports:
     - 20002:19999
     volumes:
+      - /home/juacker/code/netdata/cloud-playground/docker/certs/haproxy.pem:/etc/ssl/certs/haproxy.pem:ro
       - ./child2_stream.conf:/etc/netdata/stream.conf:ro
+      - ./curlrc:/root/.curlrc
+      - ./curlrc:/home/netdata/.curlrc
+      - /etc/hosts:/etc/hosts
     environment:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD2_SPACE}
-      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+      - NETDATA_CLAIM_URL=https://testing.netdata.cloud
+    entrypoint: /bin/bash -c "update-ca-certificates && /usr/sbin/run.sh"
