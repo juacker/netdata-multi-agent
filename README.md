@@ -16,7 +16,7 @@ stateDiagram-v2
 
 ## Setup
 
-- Create a `.env` file with the required claim tokens (if you want to claim all agents to the same space, put the same token value):
+- Create a `.env` file with the required claim tokens (if you want to claim agents to different spaces, set new env vars for them):
 
 ```txt
 CLAIM_TOKEN_ENV=<TOKEN_VALUE>
