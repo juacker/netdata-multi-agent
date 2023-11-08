@@ -1,16 +1,26 @@
 # Multi-Agent configuration for Netdata
 
-Multi agent netdata configuration. This setup can place children and parent in different spaces, as needed.
-As children are streaming to parent, the three of them will be available at the parent's space.
+Multi agent netdata configuration, this creates a 3 level grandparent/parent/children setup:
+
+```mermaid
+stateDiagram-v2
+    GrandParent --> Parent1
+    GrandParent --> Parent2
+    Parent1 --> "Child1_latest
+    Parent1 --> Child1_stable
+    Parent1 --> Child1_old_stable
+    Parent2 --> Child2_latest
+    Parent2 --> Child2_stable
+    Parent2 --> Child2_old_stable
+```
 
 ## Setup
 
-- Create a `.env` file with the required claim tokens (if you want to claim all agents to the same space, put the same token value):
+- Create a `.env` file with the required claim tokens (if you want to claim agents to different spaces, set new env vars for them):
 
 ```txt
-CLAIM_TOKEN_PARENT_SPACE=<TOKEN_VALUE>
-CLAIM_TOKEN_CHILD1_SPACE=<TOKEN_VALUE>
-CLAIM_TOKEN_CHILD2_SPACE=<TOKEN_VALUE>
+CLAIM_TOKEN_ENV=<TOKEN_VALUE>
+CLAIM_TOKEN_URL=<NETDATA-URL> // for public production env use: https://app.netdata.cloud
 ```
 
 - start docker compose
