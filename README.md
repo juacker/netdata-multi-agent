@@ -20,7 +20,7 @@ stateDiagram-v2
 
 ```txt
 CLAIM_TOKEN_ENV=<TOKEN_VALUE>
-CLAIM_TOKEN_URL=<NETDATA_URL> // for public production env use: https://app.netdata.cloud
+CLAIM_URL_ENV=<NETDATA_URL> // for public production env use: https://app.netdata.cloud
 ```
 
 - start docker compose
