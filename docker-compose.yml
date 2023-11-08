@@ -1,35 +1,110 @@
 version: '3.3'
 services:
-  parent:
+  grand-parent:
     image: netdata/netdata:latest
-    container_name: parent
-    hostname: parent
+    container_name: grand-parent
+    hostname: grand-parent
     ports:
       - 20000:19999
     volumes:
-      - ./parent_stream.conf:/etc/netdata/stream.conf:ro
+      - ./grand_parent_stream.conf:/etc/netdata/stream.conf:ro
+      - ./netdata.conf:/etc/netdata/netdata.conf:ro
     environment:
-      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_PARENT_SPACE}
-      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
+  parent1:
+    image: netdata/netdata:latest
+    container_name: parent1
+    hostname: parent1
+    ports:
+      - 20001:19999
+    volumes:
+      - ./parent1_stream.conf:/etc/netdata/stream.conf:ro
+      - ./netdata.conf:/etc/netdata/netdata.conf:ro
+    environment:
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
+  parent2:
+    image: netdata/netdata:latest
+    container_name: parent2
+    hostname: parent2
+    ports:
+      - 20002:19999
+    volumes:
+      - ./parent2_stream.conf:/etc/netdata/stream.conf:ro
+      - ./netdata.conf:/etc/netdata/netdata.conf:ro
+    environment:
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
   child1:
     image: netdata/netdata:latest
-    container_name: child1
-    hostname: child1
+    container_name: child1-latest
+    hostname: child1-latest
     ports:
-    - 20001:19999
+    - 20003:19999
     volumes:
       - ./child1_stream.conf:/etc/netdata/stream.conf:ro
+      - ./netdata.conf:/etc/netdata/netdata.conf:ro
     environment:
-      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD1_SPACE}
-      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
   child2:
     image: netdata/netdata:latest
-    container_name: child2
-    hostname: child2
+    container_name: child2-latest
+    hostname: child2-latest
     ports:
-    - 20002:19999
+    - 20004:19999
     volumes:
       - ./child2_stream.conf:/etc/netdata/stream.conf:ro
+      - ./netdata.conf:/etc/netdata/netdata.conf:ro
     environment:
-      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_CHILD2_SPACE}
-      - NETDATA_CLAIM_URL=https://app.netdata.cloud
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
+  child1-stable:
+    image: netdata/netdata:v1.43.2
+    container_name: child1-stable
+    hostname: child1-stable
+    ports:
+    - 20005:19999
+    volumes:
+      - ./child1_stream.conf:/etc/netdata/stream.conf:ro
+      - ./netdata.conf:/etc/netdata/netdata.conf:ro
+    environment:
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
+  child2-stable:
+    image: netdata/netdata:v1.43.2
+    container_name: child2-stable
+    hostname: child2-stable
+    ports:
+    - 20006:19999
+    volumes:
+      - ./child2_stream.conf:/etc/netdata/stream.conf:ro
+      - ./netdata.conf:/etc/netdata/netdata.conf:ro
+    environment:
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
+  child1-old-stable:
+    image: netdata/netdata:v1.42.0
+    container_name: child1-old-stable
+    hostname: child1-old-stable
+    ports:
+    - 20007:19999
+    volumes:
+      - ./child1_stream.conf:/etc/netdata/stream.conf:ro
+      - ./netdata.conf:/etc/netdata/netdata.conf:ro
+    environment:
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
+  child2-old-stable:
+    image: netdata/netdata:v1.42.0
+    container_name: child2-old-stable
+    hostname: child2-old-stable
+    ports:
+    - 20008:19999
+    volumes:
+      - ./child2_stream.conf:/etc/netdata/stream.conf:ro
+      - ./netdata.conf:/etc/netdata/netdata.conf:ro
+    environment:
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
