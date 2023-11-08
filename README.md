@@ -6,7 +6,7 @@ Multi agent netdata configuration, this creates a 3 level grandparent/parent/chi
 stateDiagram-v2
     GrandParent --> Parent1
     GrandParent --> Parent2
-    Parent1 --> "Child1_latest
+    Parent1 --> Child1_latest
     Parent1 --> Child1_stable
     Parent1 --> Child1_old_stable
     Parent2 --> Child2_latest
@@ -20,7 +20,7 @@ stateDiagram-v2
 
 ```txt
 CLAIM_TOKEN_ENV=<TOKEN_VALUE>
-CLAIM_TOKEN_URL=<NETDATA-URL> // for public production env use: https://app.netdata.cloud
+CLAIM_TOKEN_URL=<NETDATA_URL> // for public production env use: https://app.netdata.cloud
 ```
 
 - start docker compose
