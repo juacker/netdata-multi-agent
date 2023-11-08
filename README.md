@@ -6,12 +6,12 @@ Multi agent netdata configuration, this creates a 3 level grandparent/parent/chi
 stateDiagram-v2
     GrandParent --> Parent1
     GrandParent --> Parent2
-    Parent1 --> Child1-latest
-    Parent1 --> Child1-stable
-    Parent1 --> Child1-old-stable
-    Parent2 --> Child2-latest
-    Parent2 --> Child2-stable
-    Parent2 --> Child2-old-stable
+    Parent1 --> "Child1_latest
+    Parent1 --> Child1_stable
+    Parent1 --> Child1_old_stable
+    Parent2 --> Child2_latest
+    Parent2 --> Child2_stable
+    Parent2 --> Child2_old_stable
 ```
 
 ## Setup
