@@ -23,8 +23,16 @@ CLAIM_TOKEN_ENV=<TOKEN_VALUE>
 CLAIM_URL_ENV=<NETDATA_URL> // for public production env use: https://app.netdata.cloud
 ```
 
-- start docker compose
+- start all agents using docker compose:
 
 ```shell
 > docker compose up
 ```
+
+You can also run individual agents, as needed:
+
+```shell
+> docker compose up child1 child2
+```
+
+Refer to the docker compose [docs](https://docs.docker.com/compose/reference/) for more useful commands.
