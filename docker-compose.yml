@@ -61,7 +61,7 @@ services:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
       - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
   child1-stable:
-    image: netdata/netdata:v1.43.2
+    image: netdata/netdata:v2.0.1
     container_name: child1-stable
     hostname: child1-stable
     ports:
@@ -85,7 +85,7 @@ services:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
       - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
   child1-old-stable:
-    image: netdata/netdata:v1.42.0
+    image: netdata/netdata:v1.39.0
     container_name: child1-old-stable
     hostname: child1-old-stable
     ports:
@@ -97,7 +97,7 @@ services:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
       - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
   child2-old-stable:
-    image: netdata/netdata:v1.42.0
+    image: netdata/netdata:v1.33.1
     container_name: child2-old-stable
     hostname: child2-old-stable
     ports:
@@ -108,3 +108,23 @@ services:
     environment:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
       - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
+  local-only:
+    image: netdata/netdata:latest
+    container_name: local-only
+    hostname: local-only
+    ports:
+      - 20009:19999
+
+  # Scale with: docker compose up -d --scale agent=1000
+  # No container_name / hostname / ports → safe to replicate.
+  # Each replica gets a unique container-ID hostname and machine GUID,
+  # so it shows up as a distinct node in Netdata Cloud.
+  agent:
+    image: netdata/netdata:latest
+    environment:
+      - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
+      - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
+    deploy:
+      resources:
+        limits:
+          memory: 300M
