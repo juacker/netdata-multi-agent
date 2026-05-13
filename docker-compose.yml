@@ -124,7 +124,10 @@ services:
     environment:
       - NETDATA_CLAIM_TOKEN=${CLAIM_TOKEN_ENV}
       - NETDATA_CLAIM_URL=${CLAIM_URL_ENV}
+    volumes:
+      - ./agent.conf:/etc/netdata/netdata.conf:ro
     deploy:
       resources:
         limits:
-          memory: 300M
+          memory: 100M
+          cpus: '0.25'
